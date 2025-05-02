@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "918828157429",
+    "project_id": "egyproducts-a04fa",
+    "storage_bucket": "egyproducts-a04fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918828157429:android:3dba2e7de3b8df32ae38bc",
+        "android_client_info": {
+          "package_name": "com.example.first"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0BhflJyMIulAZpwVFPchn2bJrYuFGBJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
