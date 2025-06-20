@@ -30,14 +30,11 @@ class _MainWrapperState extends State<MainWrapper> {
   Widget _buildCurrentScreen() {
     switch (_currentIndex) {
       case 0:
-        return const HomeScreen(); // ✅ Welcome
+        return HomeScreen(cart: _cart);
       case 1:
-        return CartScreen(cart: _cart, updateCart: _updateCart); // ✅ cart
+        return CartScreen(cart: _cart, updateCart: _updateCart);
       case 2:
-        return scan.ScanScreen(
-          cart: _cart,
-          updateCart: _updateCart,
-        ); // ✅ scan (imported with prefix)
+        return scan.ScanScreen(cart: _cart, updateCart: _updateCart);
       case 3:
         return const ProfileScreen();
       default:
@@ -67,13 +64,44 @@ class _MainWrapperState extends State<MainWrapper> {
                 onPressed: () => _onTabTapped(0),
               ),
               IconButton(
-                icon: Icon(
-                  Icons.shopping_cart,
-                  color: _currentIndex == 1 ? Colors.blueAccent : Colors.grey,
-                ),
                 onPressed: () => _onTabTapped(1),
+                icon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Icon(
+                      Icons.shopping_cart,
+                      color:
+                          _currentIndex == 1 ? Colors.blueAccent : Colors.grey,
+                    ),
+                    if (_cart.isNotEmpty)
+                      Positioned(
+                        right: -6,
+                        top: -6,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          constraints: const BoxConstraints(
+                            minWidth: 20,
+                            minHeight: 20,
+                          ),
+                          child: Text(
+                            '${_cart.length}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 40), // مساحة زر النص
+              const SizedBox(width: 40),
               IconButton(
                 icon: Icon(
                   Icons.camera_alt_outlined,
